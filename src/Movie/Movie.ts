@@ -1,5 +1,5 @@
 // Dummy ShowTime class for type reference
-class ShowTime {
+export class ShowTime {
     constructor(
         public showTimeID: number,
         public movieID: number,
@@ -52,4 +52,5 @@ export class Movie {
         return this.duration;
     }
 }
+
 
