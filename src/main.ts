@@ -2,7 +2,8 @@
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
-import { Booking } from "./Booking/Bookinng"
+import { Booking } from "./Booking/Bookinng";
+import { Screen } from "./Screen/Screen"
 import { log } from "console";
 
 
@@ -30,4 +31,6 @@ console.log("Showtimes on 2025-06-01:", movie1.getShowTime("2025-06-01"));
 const booking = new Booking(1, 3, 8, "A3", "29/23/3903", "ABN");
 console.log(booking);
 
-
+//TEST SCREEN 
+const screen1 = new Screen(2, '24 Inch', 3);
+console.log(screen1);
