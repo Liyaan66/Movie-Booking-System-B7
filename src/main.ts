@@ -3,9 +3,10 @@ import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Booking";
-import { Showtime } from "./Showtime/Showtime";
-
-
+import { Screen } from "./Screen/Screen";
+import { Feedback } from "./Feedback/Feedback";
+import { Seats } from "./Seats/Seats"
+import { ZoneType } from "./Zones/Zones";
 
 
 // TEST CUSTOMER
@@ -29,21 +30,25 @@ console.log("Showtimes on 2025-06-01:", movie1.getShowTime("2025-06-01"));
 
 
 
-// TEST BOOKING
-const booking1 = new Booking(1, 1, 1, "2025-06-10 18:00", 1, 1, new Date(), 10.00);
-console.log(booking1.getBookingDetails());
-// Cancel booking
-booking1.cancelBooking();
+//TEST SCREEN 
+const screen1 = new Screen(2, '24 Inch', 3);
+console.log(screen1);
 
 
-//TEST SHOWTIME
-const movie = new Movie(1, "Harry Potter", "Magic", 60);
-const showtime = new Showtime(1, movie, 5, new Date(), new Date(), new Date());
+//TEST FEEDBACK 
+const feedback = new Feedback(customer1,"FB1", "89", 900,"Hello all ");
+console.log(feedback);
 
-// Print seat map
-console.log("Seat Map:");
-console.log(showtime.getSeatMap());
 
-// Print available seats
-console.log("Available Seats:");
-console.log(showtime.getAvailableSeats());
+// TEST ZONETYPE
+const zone2 = new ZoneType(1, "A06", "VIP");
+zone2.setZoneType("STANDARD");
+console.log(zone2.chooseZone());
+
+
+// TEST SEATS
+const seats1 = new Seats(2, "09", "Available", true, zone2); 
+console.log(seats1.reserve());
+console.log(seats1);
+
+
