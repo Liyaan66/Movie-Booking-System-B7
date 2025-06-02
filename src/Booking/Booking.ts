@@ -63,7 +63,7 @@ export class Booking {
 
     cancelBooking(): void {
         if (this.bookingID > 0) {
-            console.log(`Booking ${this.bookingID} has been cancelled. Refund of $${this.totalPrice} will be processed.`);
+            console.log(`Booking ${this.bookingID} has been cancelled. Refund of ${this.totalPrice} will be processed.`);
             this.bookingID = -1;
         } else {
             console.log("Invalid booking ID. No action taken.");
