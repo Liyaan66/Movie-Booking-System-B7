@@ -2,8 +2,8 @@
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
-import { Booking } from "./Booking/Bookinng"
-import { log } from "console";
+import { Booking } from "./Booking/Booking";
+
 
 
 // TEST CUSTOMER
@@ -26,8 +26,9 @@ console.log(movie1.getDetails());
 console.log("Showtimes on 2025-06-01:", movie1.getShowTime("2025-06-01"));
 
 
+
 // TEST BOOKING
-const booking = new Booking(1, 3, 8, "A3", "29/23/3903", "ABN");
-console.log(booking);
-
-
+const booking1 = new Booking(1, 1, 1, "2025-06-10 18:00", 1, 1, new Date(), 10.00);
+console.log(booking1.getBookingDetails());
+// Cancel booking
+booking1.cancelBooking();
