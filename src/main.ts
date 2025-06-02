@@ -2,8 +2,8 @@
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
-import { Booking } from "./Booking/Bookinng";
-import { Screen } from "./Screen/Screen"
+import { Booking } from "./Booking/Booking";
+import { Screen } from "./Screen/Screen";
 
 
 // TEST CUSTOMER
