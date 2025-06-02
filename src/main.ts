@@ -4,7 +4,6 @@ import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Bookinng";
 import { Screen } from "./Screen/Screen"
-import { log } from "console";
 
 
 // TEST CUSTOMER
