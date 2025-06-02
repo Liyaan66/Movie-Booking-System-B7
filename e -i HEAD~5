@@ -1,0 +1,27 @@
+910324d Channak18 <channak.kan@student.passerellesnumeriques.org> git config
+e12b74a Channak18 <channak.kan@student.passerellesnumeriques.org> config global
+425b4e0 Channak18 <channak.kan@student.passerellesnumeriques.org> feat(booking): update code booking
+dae9bcc Channak18 <channak.kan@student.passerellesnumeriques.org> feat(booking): push branch to repo
+a418287 Channak18 <channak.kan@student.passerellesnumeriques.org> feat(screen): added class screen
+12a69b3 Channak18 <channak.kan@student.passerellesnumeriques.org> feat(screen): Added file and folder screen
+718b3b0 Channak18 <channak.kan@student.passerellesnumeriques.org> feat(seats): added class Booking
+d861247 Channak18 <channak.kan@student.passerellesnumeriques.org> Merge branch 'main' of https://github.com/Liyaan66/Movie-Booking-System-B7 into feature/users
+e9539b7 Channak18 <channak.kan@student.passerellesnumeriques.org> Resolve merge conflict between feature/users and feature/movie
+c43fe4f Channak18 <channak.kan@student.passerellesnumeriques.org> Merge branch 'feature/movie'
+7e0457c Channak18 <channak.kan@student.passerellesnumeriques.org> feat(movie): add code movie
+37a57bd Channak18 <channak.kan@student.passerellesnumeriques.org> Add Seats and Zones components
+a152020 Channak18 <channak.kan@student.passerellesnumeriques.org> Update tsconfig.json
+4031150 Channak18 <channak.kan@student.passerellesnumeriques.org> Merge branch 'feature/seats'
+9932d2d Channak18 <channak.kan@student.passerellesnumeriques.org> feat(seats): Added seats class
+8f73421 Channak18 <channak.kan@student.passerellesnumeriques.org> push branch movie to repo
+4e633bc Channak18 <channak.kan@student.passerellesnumeriques.org> feat(users): coding about customer users and staff
+5f54f23 Channak18 <channak.kan@student.passerellesnumeriques.org> Merge branch 'main' of https://github.com/Liyaan66/Movie-Booking-System-B7
+2789f86 Channak18 <channak.kan@student.passerellesnumeriques.org> feat(seat:push seats to repository
+9f85f32 Channak18 <channak.kan@student.passerellesnumeriques.org> feat(users): implement User base class
+efba304 Channak18 <channak.kan@student.passerellesnumeriques.org> branch checking
+9d7b26d Channak18 <channak.kan@student.passerellesnumeriques.org> Added project structure
+92416d7 Channak18 <channak.kan@student.passerellesnumeriques.org> move Movie.ts
+3ee805e Channak18 <channak.kan@student.passerellesnumeriques.org> add movie class of typescript code
+f374807 Channak18 <channak.kan@student.passerellesnumeriques.org> create movie branch
+01cd95e Channak18 <channak.kan@student.passerellesnumeriques.org> Added user file struture
+4f7cf56 Channak18 <channak.kan@student.passerellesnumeriques.org> Added project struture
