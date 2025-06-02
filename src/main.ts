@@ -3,6 +3,7 @@ import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Booking";
+import { Showtime } from "./Showtime/Showtime";
 
 
 
@@ -33,3 +34,16 @@ const booking1 = new Booking(1, 1, 1, "2025-06-10 18:00", 1, 1, new Date(), 10.0
 console.log(booking1.getBookingDetails());
 // Cancel booking
 booking1.cancelBooking();
+
+
+//TEST SHOWTIME
+const movie = new Movie(1, "Harry Potter", "Magic", 60);
+const showtime = new Showtime(1, movie, 5, new Date(), new Date(), new Date());
+
+// Print seat map
+console.log("Seat Map:");
+console.log(showtime.getSeatMap());
+
+// Print available seats
+console.log("Available Seats:");
+console.log(showtime.getAvailableSeats());
