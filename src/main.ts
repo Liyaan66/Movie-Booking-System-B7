@@ -4,7 +4,6 @@ import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Booking";
 import { Screen } from "./Screen/Screen";
-import { Feedback } from "./Feedback/Feedback";
 
 
 // TEST CUSTOMER
@@ -27,6 +26,7 @@ console.log(movie1.getDetails());
 console.log("Showtimes on 2025-06-01:", movie1.getShowTime("2025-06-01"));
 
 
+
 // TEST BOOKING
 const booking = new Booking(1, 3, 8, "A3", "29/23/3903", "ABN");
 console.log(booking);
@@ -34,8 +34,3 @@ console.log(booking);
 //TEST SCREEN 
 const screen1 = new Screen(2, '24 Inch', 3);
 console.log(screen1);
-
-
-//TEST FEEDBACK 
-const feedback = new Feedback("90", "83", 90, "it is good movies");
-console.log(feedback);
