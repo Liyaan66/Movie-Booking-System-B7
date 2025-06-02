@@ -1,25 +1,73 @@
 export class Booking {
     bookingID: number;
     customerID: number;
-    movieID: number;
-    seatNumber: string;
-    bookingDate: string;
-    paymentStatus: string;
+    movieId: number;
+    showTime: string;
+    seatID: number;
+    ticketID: number;
+    bookingDate: Date;
+    totalPrice: string;
 
-    constructor(bookingID: number, customerID: number, movieID: number, seatNumber: string, bookingDate: string, paymentStatus: string) {
-        this.bookingID = bookingID;
-        this.customerID = customerID;
-        this.movieID = movieID;
-        this.seatNumber = seatNumber;
+    constructor(
+        bookingId: number,
+        customerId: number,
+        movieId: number,
+        showTime: string,
+        seatID: number,
+        ticketID: number,
+        bookingDate: Date,
+        totalPrice: number
+    ) {
+        this.bookingID = bookingId;
+        this.customerID = customerId;
+        this.movieId = movieId;
+        this.showTime = showTime;
+        this.seatID = seatID;
+        this.ticketID = ticketID;
         this.bookingDate = bookingDate;
-        this.paymentStatus = paymentStatus;
+        this.totalPrice = `$${totalPrice.toFixed(2)}`;
     }
 
-    getDetails(): string {
-        return `Booking: ID ${this.bookingID}, Customer ID: ${this.customerID}, Movie ID: ${this.movieID}`;
+    createBooking(
+        bookingId: number,
+        customerId: number,
+        movieId: number,
+        showTime: string,
+        seatID: number,
+        ticketID: number,
+        bookingDate: Date,
+        totalPrice: number
+    ) {
+        this.bookingID = bookingId;
+        this.customerID = customerId;
+        this.movieId = movieId;
+        this.showTime = showTime;
+        this.seatID = seatID;
+        this.ticketID = ticketID;
+        this.bookingDate = bookingDate;
+        this.totalPrice = `$${totalPrice.toFixed(2)}`; // Format totalPrice as string with "$"
     }
 
-    update(data: any): void {
-        Object.assign(this, data);
+    getBookingDetails() {
+        return {
+            bookingId: this.bookingID,
+            customerId: this.customerID,
+            movieId: this.movieId,
+            showTime: this.showTime,
+            seatID: this.seatID,
+            ticketID: this.ticketID,
+            bookingDate: this.bookingDate,
+            totalPrice: this.totalPrice
+        };
+    }
+
+    cancelBooking(): void {
+        if (this.bookingID > 0) {
+            console.log(`Booking ${this.bookingID} has been cancelled. Refund of $${this.totalPrice} will be processed.`);
+            this.bookingID = -1;
+        } else {
+            console.log("Invalid booking ID. No action taken.");
+        }
     }
 }
+
