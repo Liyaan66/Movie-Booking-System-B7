@@ -7,11 +7,7 @@ import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
 import { ZoneType } from "./Zones/Zones";
-
-// MOVIES TESS
-const movies = new Movie(1,"Hello woord", "Holywood", 4);
-console.log(movies);
-
+import { Showtime } from "./Showtime/Showtime";
 
 
 // TEST CUSTOMER
@@ -27,12 +23,6 @@ staff1.register("Bob", "bob@cinema.com", "admin321");
 console.log("Login success:", staff1.login("bob@cinema.com", "admin321"));
 
 staff1.logout();
-
-// TEST MOVIE
-const movie1 = new Movie(1, "Avengers: Endgame", "Action", 181); 
-console.log(movie1.getDetails());
-console.log("Showtimes on 2025-06-01:", movie1.getShowTime("2025-06-01"));
-
 
 
 //TEST SCREEN 
@@ -57,4 +47,17 @@ console.log(seats1.reserve());
 console.log(seats1);
 
 
-// User stroy 1: 1.	As a user, I want to browse and filter movies by genre and showtimes.
+// User stroy 1: As a user, I want to browse and filter movies by genre and showtimes.
+const showtime1 = new Showtime(1, 1, 1, "2025-06-03", "14:00", "16:00");
+const showtime2 = new Showtime(2, 2, 1, "2025-06-03", "16:30", "18:00");
+const showtime3 = new Showtime(3, 3, 2, "2024-20-12", "12:00", "2:00");
+
+const movie1 = new Movie(1, "Action Movie", "Action", 120, [showtime1]);
+const movie2 = new Movie(2, "Comedy Show", "Comedy", 90, [showtime2]);
+const movie3 = new Movie(2, "កន្ទួងខៀវ", "Horro", 2, [showtime3])
+
+console.log(" - Movie 1:", movie1.getDetails());
+console.log(" - Showtimes for Movie 1:", movie1.getShowtimes()[0].getDetails());
+
+console.log(" - Movie 3:", movie3.getDetails());
+console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
