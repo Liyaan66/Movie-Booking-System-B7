@@ -41,7 +41,7 @@ zone2.setZoneType("STANDARD");
 console.log(zone2.chooseZone());
 
 
-// // User stroy 1: As a user, I want to browse and filter movies by genre and showtimes.
+// User stroy 1: As a user, I want to browse and filter movies by genre and showtimes.
 const showtime1 = new Showtime(1, 1, 1, "2025-06-03", "14:00", "16:00");
 const showtime2 = new Showtime(2, 2, 1, "2025-06-03", "16:30", "18:00");
 const showtime3 = new Showtime(3, 3, 2, "2024-20-12", "12:00", "2:00");
@@ -57,23 +57,21 @@ console.log(" - Movie 3:", movie3.getDetails());
 console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
 
 
-// // User story 2: I want to view seat availability and choose my seats.
+// User story 2: I want to view seat availability and choose my seats.
 
-const zoneA = new ZoneType(1, "zone A", "VIP"); // Create zone type objects using MockZoneType
+const zoneA = new ZoneType(1, "zone A", "VIP"); 
 const zoneB = new ZoneType(2, "Zone B", "Standard");
 
 const seat1 = new Seats(1, "Z1", "Available", true, zoneA);
 const seat2 = new Seats(2, "Z2", "Reserved", true, zoneB); 
 const seat3 = new Seats(3, "Z1", "Available", true, zoneA);
 
-// Display objects in terminal with console.log
-console.log("Seat Details as of 06:08 PM +07 on Tuesday, June 03, 2025:");
+console.log("Seat Details as of 06:08 PM +07 on Tuesday, June 03, 2025:"); 
 seat1.getSeatDetails();
 seat2.getSeatDetails();
 seat3.getSeatDetails();
 
-// Add choosing a seat
-console.log(" ");
+console.log(" "); 
 console.log("\nChoosing Seat 1:");
 console.log(seat2.chooseAndReserve());
 console.log("Updated Seat 1 Details:");
