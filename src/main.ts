@@ -8,6 +8,11 @@ import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
 import { ZoneType } from "./Zones/Zones";
 
+// MOVIES TESS
+const movies = new Movie(1,"Hello woord", "Holywood", 4);
+console.log(movies);
+
+
 
 // TEST CUSTOMER
 const customer1 = new Customer("Alice", 1, "alice@mail.com", "Female", "pass123");
@@ -52,3 +57,4 @@ console.log(seats1.reserve());
 console.log(seats1);
 
 
+// User stroy 1: 1.	As a user, I want to browse and filter movies by genre and showtimes.
