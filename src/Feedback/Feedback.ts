@@ -17,9 +17,5 @@ export class Feedback {
         this.updateDate = new Date();
     }
 
-//   getFeedback(): void {
-//     // Logic to get feedb
-//   }
-
 
 }
