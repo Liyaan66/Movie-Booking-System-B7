@@ -7,6 +7,9 @@ import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
 import { ZoneType } from "./Zones/Zones";
+import { Payment } from "./Payment/Payment"; 
+
+
 
 // MOVIES TESS
 const movies = new Movie(1,"Hello woord", "Holywood", 4);
@@ -58,3 +61,18 @@ console.log(seats1);
 
 
 // User stroy 1: 1.	As a user, I want to browse and filter movies by genre and showtimes.
+
+
+
+
+
+// Create a new payment instance
+const payment = new Payment(1, 101, 50.0, 45.0, "");
+
+// Process the payment
+const isPaid = payment.processPayment();
+console.log("Payment processed:", isPaid);
+
+// Get the payment status
+const status = payment.getPaymentStatus();
+console.log("Payment status:", status);
