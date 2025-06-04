@@ -32,41 +32,42 @@ console.log(booking1.getBookingDetails());
 booking1.cancelBooking();
 
 // ------------ QR Code Ticket Test ------------
-async function testQRCode() {
-   const customerTicket = new CustomerTicket(
-    booking1.bookingID,
-    booking1.customerID,
-    booking1.seatID,
+const customerTicket = new CustomerTicket(
+    1001,
+    1,
+    25,
     "Avengers: Endgame",
-    "Cinema XYZ",
+    "Hall A",
     181,
-    booking1.bookingDate,
-    4.50 // Manually pass the ticket price
+    new Date("2025-06-10T18:00:00"),
+    12.50
 );
 
+async function testQRCode() {
     const qrCodeManager = new QRCodeManager();
-    const ticket: ReceiveTicket = await qrCodeManager.generateTicket(customerTicket);
+    const ticket = await qrCodeManager.generateTicket(customerTicket);
 
-    console.log("✅ QR Code Ticket Test");
     console.log("Reference Number:", ticket.getReferenceNumber());
     console.log("QR Code (base64):", ticket.getQrCode());
 
+    // Save the QR code
     const base64Data = ticket.getQrCode().replace(/^data:image\/png;base64,/, "");
     await writeFile("qrcode.png", base64Data, 'base64');
-    console.log("QR Code saved as qrcode.png");
 
+    // Create HTML file
     const htmlContent = `
         <!DOCTYPE html>
         <html>
         <head><title>QR Code</title></head>
         <body>
-            <h1>QR Code for Booking</h1>
-            <img src="${ticket.getQrCode()}" alt="QR Code" />
+            <h1>Ticket QR Code</h1>
+            <img src="${ticket.getQrCode()}" />
+            <pre>${ticket.getTicket().getTicketDetails()}</pre>
         </body>
         </html>
     `;
     await writeFile("qrcode.html", htmlContent);
-    console.log("HTML file created as qrcode.html. Open it in a browser to view the QR code.");
+    console.log("QR code and HTML file created.");
 }
 
-testQRCode().catch(err => console.error("Test failed:", err));
+testQRCode().catch(console.error);
