@@ -2,7 +2,8 @@ import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Booking";
-import { QRCodeManager, BookingAdapterImpl, ReceiveTicket } from "./Booking/ReceiveTicket";
+import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
+import { CustomerTicket } from "./Booking/CustomerTicket";
 import { writeFile } from 'fs/promises';
 
 // ------------ Tests ------------
@@ -32,26 +33,32 @@ booking1.cancelBooking();
 
 // ------------ QR Code Ticket Test ------------
 async function testQRCode() {
-    const bookingAdapter = new BookingAdapterImpl(booking1);
+   const customerTicket = new CustomerTicket(
+    booking1.bookingID,
+    booking1.customerID,
+    booking1.seatID,
+    "Avengers: Endgame",
+    "Cinema XYZ",
+    181,
+    booking1.bookingDate,
+    4.50 // Manually pass the ticket price
+);
+
     const qrCodeManager = new QRCodeManager();
-    const ticket = await qrCodeManager.generateTicket(bookingAdapter);
+    const ticket: ReceiveTicket = await qrCodeManager.generateTicket(customerTicket);
 
     console.log("✅ QR Code Ticket Test");
     console.log("Reference Number:", ticket.getReferenceNumber());
     console.log("QR Code (base64):", ticket.getQrCode());
 
-    // Save the QR code to a file
     const base64Data = ticket.getQrCode().replace(/^data:image\/png;base64,/, "");
     await writeFile("qrcode.png", base64Data, 'base64');
     console.log("QR Code saved as qrcode.png");
 
-    // Generate an HTML file to display the QR code
     const htmlContent = `
         <!DOCTYPE html>
         <html>
-        <head>
-            <title>QR Code</title>
-        </head>
+        <head><title>QR Code</title></head>
         <body>
             <h1>QR Code for Booking</h1>
             <img src="${ticket.getQrCode()}" alt="QR Code" />

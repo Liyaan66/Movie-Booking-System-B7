@@ -1,23 +1,11 @@
 import QRCode from 'qrcode';
-import { Booking } from "./Booking";
-
-// ------------ BookingAdapter Interface ------------
-interface BookingAdapter {
-    getId(): string;
-    getShowtime(): {
-        getMovie(): { getTitle(): string };
-        getCinema(): { getName(): string };
-        getDateTime(): Date;
-    };
-    getSeats(): { getNumber(): string }[];
-}
-export { BookingAdapter };
+import { CustomerTicket } from './CustomerTicket';
 
 // ------------ ReceiveTicket Class ------------
 export class ReceiveTicket {
     constructor(
         private id: string,
-        private booking: BookingAdapter,
+        private customerTicket: CustomerTicket,
         private referenceNumber: string,
         private qrCode: string
     ) {}
@@ -28,6 +16,10 @@ export class ReceiveTicket {
 
     public getReferenceNumber(): string {
         return this.referenceNumber;
+    }
+
+    public getTicket(): CustomerTicket {
+        return this.customerTicket;
     }
 }
 
@@ -45,43 +37,21 @@ export class QRCodeManager {
         }
     }
 
-    public async generateTicket(booking: BookingAdapter): Promise<ReceiveTicket> {
+    public async generateTicket(customerTicket: CustomerTicket): Promise<ReceiveTicket> {
         const referenceNumber = `REF${Date.now()}`;
         const data = {
-            bookingId: booking.getId(),
-            showtime: {
-                movie: booking.getShowtime().getMovie().getTitle(),
-                cinema: booking.getShowtime().getCinema().getName(),
-                dateTime: booking.getShowtime().getDateTime().toISOString()
-            },
-            seats: booking.getSeats().map(s => s.getNumber()),
+            ticketID: customerTicket.ticketID,
+            customerID: customerTicket.customerID,
+            seatID: customerTicket.seatID,
+            movieName: customerTicket.movieName,
+            hallName: customerTicket.hallName,
+            duration: `${customerTicket.duration} minutes`,
+            bookingDate: customerTicket.bookingDate.toISOString(),
+            ticketPrice: `$${customerTicket.ticketPrice.toFixed(2)}`,
             referenceNumber
         };
+
         const qrCode = await this.generateQRCode(data);
-        return new ReceiveTicket(`TICK${Date.now()}`, booking, referenceNumber, qrCode);
-    }
-}
-
-// ------------ Adapter Implementation ------------
-export class BookingAdapterImpl implements BookingAdapter {
-    constructor(private booking: Booking) {}
-
-    getId(): string {
-        return this.booking.bookingID.toString();
-    }
-
-    getShowtime() {
-        return {
-            getMovie: () => ({ getTitle: () => "Avengers: Endgame" }),
-            getCinema: () => ({ getName: () => "Cinema XYZ" }),
-            getDateTime: () => new Date(this.booking.showTime),
-        };
-    }
-
-    getSeats() {
-        return [
-            { getNumber: () => "A1" },
-            { getNumber: () => "A2" }
-        ];
+        return new ReceiveTicket(`TICK${Date.now()}`, customerTicket, referenceNumber, qrCode);
     }
 }
