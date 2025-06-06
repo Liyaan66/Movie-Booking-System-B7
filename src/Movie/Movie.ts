@@ -31,4 +31,15 @@ export class Movie {
   public getMovieID(): number {
     return this.movieID;
   }
+
+  public getDuration(): number {
+    return this.duration;
+  }
+
+  public getDetails(): string {
+  return `Movie: ${this.title} | Genre: ${this.genre} | Duration: ${this.duration} mins`;
 }
+
+}
+
+
