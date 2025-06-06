@@ -2,6 +2,7 @@ import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Booking } from "./Booking/Booking";
+<<<<<<< HEAD
 import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
@@ -9,6 +10,11 @@ import { ZoneType } from "./Zones/Zones";
 import { Showtime } from "./Showtime/Showtime";
 import { CustomerTicket } from "./Booking/CustomerTicket";
 import { Review } from "./Booking/Review";
+=======
+import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
+import { CustomerTicket } from "./Booking/CustomerTicket";
+import { writeFile } from 'fs/promises';
+>>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
 
 
 // TEST CUSTOMER
@@ -41,6 +47,7 @@ console.log(feedback);
 // -Cancel booking
 // booking1.cancelBooking();
 
+<<<<<<< HEAD
 
 
 // TEST CUSTOMER TICKET
@@ -99,3 +106,45 @@ console.log(seat1.getSeatDetails());
 console.log(seat2.getSeatDetails());
 console.log(seat3.getSeatDetails());
 console.log(" ");
+=======
+// ------------ QR Code Ticket Test ------------
+const customerTicket = new CustomerTicket(
+    1001,
+    1,
+    25,
+    "Avengers: Endgame",
+    "Hall A",
+    181,
+    new Date("2025-06-10T18:00:00"),
+    12.50
+);
+
+async function testQRCode() {
+    const qrCodeManager = new QRCodeManager();
+    const ticket = await qrCodeManager.generateTicket(customerTicket);
+
+    console.log("Reference Number:", ticket.getReferenceNumber());
+    console.log("QR Code (base64):", ticket.getQrCode());
+
+    // Save the QR code
+    const base64Data = ticket.getQrCode().replace(/^data:image\/png;base64,/, "");
+    await writeFile("qrcode.png", base64Data, 'base64');
+
+    // Create HTML file
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head><title>QR Code</title></head>
+        <body>
+            <h1>Ticket QR Code</h1>
+            <img src="${ticket.getQrCode()}" />
+            <pre>${ticket.getTicket().getTicketDetails()}</pre>
+        </body>
+        </html>
+    `;
+    await writeFile("qrcode.html", htmlContent);
+    console.log("QR code and HTML file created.");
+}
+
+testQRCode().catch(console.error);
+>>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
