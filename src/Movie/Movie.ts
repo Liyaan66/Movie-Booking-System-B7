@@ -1,59 +1,3 @@
-// // Dummy ShowTime class for type reference
-// export class ShowTime {
-//     constructor(
-//         public showTimeID: number,
-//         public movieID: number,
-//         public time: string,
-//         public date: string
-//     ) {}
-// }
-
-// export class Movie {
-//     private movieID: number;
-//     private title: string;
-//     private genre: string;
-//     private duration: number; // in minutes
-//     private showTimes: ShowTime[] = [];
-
-//     constructor(movieID: number, title: string, genre: string, duration: number) {
-//         this.movieID = movieID;
-//         this.title = title;
-//         this.genre = genre;
-//         this.duration = duration;
-//     }
-
-//     public getShowTime(date: string): ShowTime[] {
-//         return this.showTimes.filter(show => show.date === date);
-//     }
-
-//     public getDetails(): string {
-//         return `Movie: ${this.title} | Genre: ${this.genre} | Duration: ${this.duration} minutes`;
-//     }
-
-//     // Optional: add showtime
-//     public addShowTime(showTime: ShowTime): void {
-//         this.showTimes.push(showTime);
-//     }
-
-//     // Optional: accessors if needed
-//     public get getMovieID(): number {
-//         return this.movieID;
-//     }
-
-//     public get getTitle(): string {
-//         return this.title;
-//     }
-
-//     public get getGenre(): string {
-//         return this.genre;
-//     }
-
-//     public get getDuration(): number {
-//         return this.duration;
-//     }
-// }
-
-
 import { Showtime } from "../Showtime/Showtime";
 
 export class Movie {
@@ -61,21 +5,30 @@ export class Movie {
   private title: string;
   private genre: string;
   private duration: number;
-  private showtimes: Showtime[];
+  private showtimes: Showtime[] = [];
 
-  constructor(movieID: number, title: string, genre: string, duration: number, showtimes: Showtime[]) {
+  constructor(movieID: number, title: string, genre: string, duration: number) {
     this.movieID = movieID;
     this.title = title;
     this.genre = genre;
     this.duration = duration;
-    this.showtimes = showtimes;
   }
 
-  getDetails(): string {
-    return `${this.title} (${this.genre}, ${this.duration} mins)`;
+  public addShowtime(showtime: Showtime): void {
+    if (showtime.getMovieID() === this.movieID) {
+      this.showtimes.push(showtime);
+    }
   }
 
-  getShowtimes(): Showtime[] {
+  public getShowtimes(): Showtime[] {
     return this.showtimes;
+  }
+
+  public getTitle(): string {
+    return this.title;
+  }
+
+  public getMovieID(): number {
+    return this.movieID;
   }
 }
