@@ -61,5 +61,4 @@ export class Customer extends Users {
     getCustomerID(): number {
         return this.userID;
     }
-
 }
