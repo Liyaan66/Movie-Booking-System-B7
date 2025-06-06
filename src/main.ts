@@ -1,16 +1,29 @@
 import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
-import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Booking";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 17c1697b937486949be7d916ef2ba95b5bf59277
 import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
 import { ZoneType } from "./Zones/Zones";
 import { Showtime } from "./Showtime/Showtime";
+<<<<<<< HEAD
 import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
 import { CustomerTicket } from "./Booking/CustomerTicket";
 import { writeFile } from 'fs/promises';
+=======
+import { CustomerTicket } from "./Booking/CustomerTicket";
+import { Review } from "./Booking/Review";
+=======
+import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
+import { CustomerTicket } from "./Booking/CustomerTicket";
+import { writeFile } from 'fs/promises';
+>>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
+>>>>>>> 17c1697b937486949be7d916ef2ba95b5bf59277
 
 
 // TEST CUSTOMER
@@ -36,6 +49,26 @@ console.log(screen1);
 //TEST FEEDBACK 
 const feedback = new Feedback(customer1,"FB1", "89", 900,"Hello all ");
 console.log(feedback);
+
+// TEST BOOKING
+// const booking1 = new Booking(1, 1, 1, "2025-06-10 18:00", 1, 1, new Date(), 10.00);
+// console.log(booking1.getBookingDetails());
+// -Cancel booking
+// booking1.cancelBooking();
+
+<<<<<<< HEAD
+
+
+// TEST CUSTOMER TICKET
+const customerTicket1 = new CustomerTicket(18, 4, 15, "Avengers: Endgame", "AEON 3", 120, new Date(), 10.00);
+console.log(customerTicket1.getTicketDetails());
+
+
+// TEST REVIEW
+const review = new Review(1, 10, 5);
+console.log(review.getReviewDetail());
+
+
 
 
 // TEST ZONETYPE
@@ -82,8 +115,12 @@ console.log(seat1.getSeatDetails());
 console.log(seat2.getSeatDetails());
 console.log(seat3.getSeatDetails());
 console.log(" ");
+<<<<<<< HEAD
 
 
+=======
+=======
+>>>>>>> 17c1697b937486949be7d916ef2ba95b5bf59277
 // ------------ QR Code Ticket Test ------------
 const customerTicket = new CustomerTicket(
     1001,
@@ -123,4 +160,9 @@ async function testQRCode() {
     console.log("QR code and HTML file created.");
 }
 
+<<<<<<< HEAD
 testQRCode().catch(console.error);
+=======
+testQRCode().catch(console.error);
+>>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
+>>>>>>> 17c1697b937486949be7d916ef2ba95b5bf59277

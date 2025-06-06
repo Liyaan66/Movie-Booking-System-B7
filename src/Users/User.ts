@@ -4,6 +4,7 @@ export abstract class Users {
     protected email: string;
     protected gender: string;
     protected password: string;
+    
 
     constructor(userName: string, userID: number, email: string, gender: string, password: string) {
         this.userName = userName;

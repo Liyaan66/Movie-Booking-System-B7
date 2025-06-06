@@ -1,73 +1,49 @@
+import { Movie } from "../Movie/Movie";
+import { Showtime } from "../Showtime/Showtime";
+import { Seats } from "../Seats/Seats";
+import { Customer } from "../Users/Customer";
+
 export class Booking {
     bookingID: number;
-    customerID: number;
-    movieId: number;
-    showTime: string;
-    seatID: number;
+    customer: Customer;
+    movie: Movie;
+    showtime: Showtime;
+    seat: Seats;
     ticketID: number;
     bookingDate: Date;
-    totalPrice: string;
+    totalPrice: number;
 
     constructor(
-        bookingId: number,
-        customerId: number,
-        movieId: number,
-        showTime: string,
-        seatID: number,
+        bookingID: number,
+        customer: Customer,
+        movie: Movie,
+        showtime: Showtime,
+        seat: Seats,
         ticketID: number,
         bookingDate: Date,
         totalPrice: number
     ) {
-        this.bookingID = bookingId;
-        this.customerID = customerId;
-        this.movieId = movieId;
-        this.showTime = showTime;
-        this.seatID = seatID;
+        this.bookingID = bookingID;
+        this.customer = customer;
+        this.movie = movie;
+        this.showtime = showtime;
+        this.seat = seat;
         this.ticketID = ticketID;
         this.bookingDate = bookingDate;
-        this.totalPrice = `$${totalPrice.toFixed(2)}`;
-    }
-
-    createBooking(
-        bookingId: number,
-        customerId: number,
-        movieId: number,
-        showTime: string,
-        seatID: number,
-        ticketID: number,
-        bookingDate: Date,
-        totalPrice: number
-    ) {
-        this.bookingID = bookingId;
-        this.customerID = customerId;
-        this.movieId = movieId;
-        this.showTime = showTime;
-        this.seatID = seatID;
-        this.ticketID = ticketID;
-        this.bookingDate = bookingDate;
-        this.totalPrice = `$${totalPrice.toFixed(2)}`; // Format totalPrice as string with "$"
-    }
-
+        this.totalPrice = totalPrice;
+    };
     getBookingDetails() {
         return {
-            bookingId: this.bookingID,
-            customerId: this.customerID,
-            movieId: this.movieId,
-            showTime: this.showTime,
-            seatID: this.seatID,
-            ticketID: this.ticketID,
+            bookingID: this.bookingID,
+            customerName: this.customer.getName(),
+            movie: this.movie.getTitle(),
+            showtime: this.showtime.getDetails(),
+            seat: this.seat.getSeatDetails(),
             bookingDate: this.bookingDate,
-            totalPrice: this.totalPrice
+            totalPrice: `$${this.totalPrice.toFixed(2)}`
         };
-    }
-
+    };
     cancelBooking(): void {
-        if (this.bookingID > 0) {
-            console.log(`Booking ${this.bookingID} has been cancelled. Refund of $${this.totalPrice} will be processed.`);
-            this.bookingID = -1;
-        } else {
-            console.log("Invalid booking ID. No action taken.");
-        }
+        console.log(`Booking ${this.bookingID} cancelled. Refund: $${this.totalPrice.toFixed(2)}`);
     }
-}
-
+};

@@ -1,7 +1,7 @@
 import { Customer } from '../Users/Customer';
 import { Staff } from '../Users/Staff';
 
-class Hall {
+export class Hall {
   private hallID: number;
   private hallName: string;
   private totalSeat: number;

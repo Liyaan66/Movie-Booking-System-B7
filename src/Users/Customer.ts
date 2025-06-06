@@ -1,12 +1,5 @@
 import { Users } from "./User";
-
-// Dummy Booking class
-class Booking {
-    constructor(
-        public bookingID: number,
-        public details: string
-    ) {}
-}
+import { Booking } from "../Booking/Booking";
 
 export class Customer extends Users {
     private bookings: Booking[] = [];
@@ -64,6 +57,9 @@ export class Customer extends Users {
 
     public setPassword(pw: string): void {
         this.password = pw;
+    }
+    getCustomerID(): number {
+        return this.userID;
     }
 
     public getName(): string{
