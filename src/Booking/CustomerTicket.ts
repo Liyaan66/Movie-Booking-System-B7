@@ -1,4 +1,6 @@
+import { Booking } from "./Booking";
 export class CustomerTicket {
+    private bookings: Booking[] = [];
     ticketID: number;
     customerID: number;
     seatID: number;

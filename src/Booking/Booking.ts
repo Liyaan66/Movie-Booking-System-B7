@@ -1,45 +1,49 @@
+import { Movie } from "../Movie/Movie";
+import { Showtime } from "../Showtime/Showtime";
+import { Seats } from "../Seats/Seats";
+import { Customer } from "../Users/Customer";
+
 export class Booking {
     bookingID: number;
-    customerID: number;
-    movieId: number;
-    showTime: Date; // Changed to Date for easier comparison
-    seatID: number;
+    customer: Customer;
+    movie: Movie;
+    showtime: Showtime;
+    seat: Seats;
     ticketID: number;
     bookingDate: Date;
-    totalPrice: string; // Formatted as "$X.XX" per your previous preference
+    totalPrice: number;
 
     constructor(
         bookingID: number,
-        customerID: number,
-        movieId: number,
-        showTime: Date,
-        seatID: number,
+        customer: Customer,
+        movie: Movie,
+        showtime: Showtime,
+        seat: Seats,
         ticketID: number,
         bookingDate: Date,
         totalPrice: number
     ) {
         this.bookingID = bookingID;
-        this.customerID = customerID;
-        this.movieId = movieId;
-        this.showTime = showTime;
-        this.seatID = seatID;
+        this.customer = customer;
+        this.movie = movie;
+        this.showtime = showtime;
+        this.seat = seat;
         this.ticketID = ticketID;
         this.bookingDate = bookingDate;
-        this.totalPrice = `$${totalPrice.toFixed(2)}`;
-    }
-
-    getBookingDetails(): object {
+        this.totalPrice = totalPrice;
+    };
+    getBookingDetails() {
         return {
             bookingID: this.bookingID,
-            customerID: this.customerID,
-            movieId: this.movieId,
-            showTime: this.showTime.toISOString(),
-            seatID: this.seatID,
-            ticketID: this.ticketID,
-            bookingDate: this.bookingDate.toISOString(),
-            totalPrice: this.totalPrice
+            customerName: this.customer.getName(),
+            movie: this.movie.getTitle(),
+            showtime: this.showtime.getDetails(),
+            seat: this.seat.getSeatDetails(),
+            bookingDate: this.bookingDate,
+            totalPrice: `$${this.totalPrice.toFixed(2)}`
         };
+    };
+    cancelBooking(): void {
+        console.log(`Booking ${this.bookingID} cancelled. Refund: $${this.totalPrice.toFixed(2)}`);
     }
-    
-}
-
+};
