@@ -1,14 +1,12 @@
-
+import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
-import { Movie } from "./Movie/Movie";
 import { Booking } from "./Booking/Booking";
 import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
 import { ZoneType } from "./Zones/Zones";
 import { Showtime } from "./Showtime/Showtime";
-import { BookingManager } from "./Booking/BookingManager";
 import { CustomerTicket } from "./Booking/CustomerTicket";
 import { Review } from "./Booking/Review";
 
