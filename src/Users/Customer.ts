@@ -66,4 +66,8 @@ export class Customer extends Users {
         this.password = pw;
     }
 
+    public getName(): string{
+        return this.userName;
+    }
+
 }
