@@ -1,4 +1,4 @@
-
+import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Movie } from "./Movie/Movie";
