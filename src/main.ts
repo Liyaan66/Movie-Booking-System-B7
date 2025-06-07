@@ -7,7 +7,7 @@ import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats";
 import { ZoneType } from "./Zones/Zones";
-import { Showtime } from "./Showtime/Showtime"
+import { Showtime } from "./Showtime/Showtime";;
 import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
 import { CustomerTicket } from "./Booking/CustomerTicket";
 import { Booking } from "./Booking/Booking";
@@ -36,6 +36,24 @@ console.log(screen1);
 // TEST FEEDBACK
 const feedback = new Feedback(customer1, "FB1", "89", 900, "Hello all ");
 console.log(feedback);
+
+// TEST BOOKING
+// const booking1 = new Booking(1, 1, 1, "2025-06-10 18:00", 1, 1, new Date(), 10.00);
+// console.log(booking1.getBookingDetails());
+// -Cancel booking
+// booking1.cancelBooking();
+
+
+
+// TEST CUSTOMER TICKET
+const customerTicket1 = new CustomerTicket(18, 4, 15, "Avengers: Endgame", "AEON 3", 120, new Date(), 10.00);
+console.log(customerTicket1.getTicketDetails());
+
+
+
+
+
+
 
 // TEST ZONETYPE
 const zone2 = new ZoneType(1, "A06", "VIP");
@@ -69,8 +87,8 @@ if (showtimes.length > 0) {
 console.log(" - Movie 1:", movie1.getDetails());
 console.log(" - Showtimes for Movie 1:", movie1.getShowtimes()[0].getDetails());
 
-console.log(" - Movie 3:", movie3.getDetails());
-console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
+// console.log(" - Movie 3:", movie3.getDetails());
+// console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
 
 
 
@@ -91,6 +109,10 @@ seat3.getSeatDetails();
 
 console.log("\nChoosing Seat 2:");
 console.log(seat2.chooseAndReserve());
+console.log(seat1.getSeatDetails());
+console.log(seat2.getSeatDetails());
+console.log(seat3.getSeatDetails());
+
 
 console.log("Updated Seat Details:");
 seat1.getSeatDetails();
@@ -163,5 +185,24 @@ async function testQRCode() {
 testQRCode().catch(console.error);
 
 
+// User story 4: view my upcoming and past bookings
+const customer = new Customer("Channak",1, "channak@gmail.com","Female", "nak123");
+const pastDate = new Date("2025-06-06 12:00");
+const booking1 = new Booking(1, customer, movie1, showtime1, seat1, 1001, pastDate, 19);  // past booking
+const booking2 = new Booking(2, customer, movie2, showtime2, seat2, 1002, new Date(), 12.5); // upcoming booking
+customer.addBooking(booking1);
+customer.addBooking(booking2);
+customer.displayBookings(customer.viewUpcomingBookings(), "Upcoming");
+customer.displayBookings(customer.viewPastBookings(), "Past");
+const viewPastBookings = customer1.viewPastBookings();
+console.log("Past Bookings:", viewPastBookings);
 
 
+// User story 6: rate and review my movie experience after the show
+// Example usage
+const movie = new Movie(1, "Inception", "Sci-Fi", 148);
+const showtime = new Showtime(1, movie, hallA, "2025-06-06", "18:00", "20:30");
+// const booking = new Booking(1, customer, movie, showtime, seat1, 101, new Date("2025-06-05"), 15.00);
+customer.addBooking(booking);
+customer.addReviewForBooking(1, 4, "Great movie, but the seats were a bit uncomfortable.");
+customer.displayReviews();
