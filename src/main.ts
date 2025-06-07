@@ -11,6 +11,7 @@ import { ZoneType } from "./Zones/Zones";
 import { Showtime } from "./Showtime/Showtime"
 import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
 import { CustomerTicket } from "./Booking/CustomerTicket";
+import { log } from "console";
 
 
 // === Your existing tests and usage ===
@@ -90,6 +91,10 @@ seat3.getSeatDetails();
 
 console.log("\nChoosing Seat 2:");
 console.log(seat2.chooseAndReserve());
+console.log(seat1.getSeatDetails());
+console.log(seat2.getSeatDetails());
+console.log(seat3.getSeatDetails());
+
 
 console.log("Updated Seat Details:");
 seat1.getSeatDetails();
