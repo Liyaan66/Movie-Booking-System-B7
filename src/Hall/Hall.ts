@@ -1,38 +1,40 @@
-import { Customer } from '../Users/Customer';
-import { Staff } from '../Users/Staff';
+import { Customer } from "../Users/Customer";
+import { Staff } from "../Users/Staff";
+import { Seats } from "../Seats/Seats";
 
 export class Hall {
   private hallID: number;
   private hallName: string;
-  private totalSeat: number;
-  private movieID: number;
-  private seatID: number;
+  private seats: Seats[] = [];
   private customers: Customer[] = [];
   private staff: Staff[] = [];
 
-  constructor(
-    hallID: number,
-    hallName: string,
-    totalSeat: number,
-    movieID: number,
-    seatID: number
-  ) {
+  constructor(hallID: number, hallName: string) {
     this.hallID = hallID;
     this.hallName = hallName;
-    this.totalSeat = totalSeat;
-    this.movieID = movieID;
-    this.seatID = seatID;
   }
 
-  displayDetail(): string {
-    return `Hall: ${this.hallName}, Seats: ${this.totalSeat}, Movie ID: ${this.movieID}`;
+  public addSeat(seat: Seats): void {
+    this.seats.push(seat);
   }
 
-  addCustomer(customer: Customer): void {
+  public addCustomer(customer: Customer): void {
     this.customers.push(customer);
   }
 
-  addStaff(staff: Staff): void {
+  public addStaff(staff: Staff): void {
     this.staff.push(staff);
+  }
+
+  public getHallName(): string {
+    return this.hallName;
+  }
+
+  public getSeatList(): Seats[] {
+    return this.seats;
+  }
+
+  public displayDetail(): string {
+    return `Hall: ${this.hallName}, Total Seats: ${this.seats.length}`;
   }
 }
