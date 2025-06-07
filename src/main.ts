@@ -2,19 +2,15 @@ import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Booking } from "./Booking/Booking";
-<<<<<<< HEAD
-import { Screen } from "./Screen/Screen";
-import { Feedback } from "./Feedback/Feedback";
-import { Seats } from "./Seats/Seats"
-import { ZoneType } from "./Zones/Zones";
-import { Showtime } from "./Showtime/Showtime";
-import { CustomerTicket } from "./Booking/CustomerTicket";
-import { Review } from "./Booking/Review";
-=======
 import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
 import { CustomerTicket } from "./Booking/CustomerTicket";
 import { writeFile } from 'fs/promises';
->>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
+import { Feedback } from "./Feedback/Feedback";
+import { Review } from "./Booking/Review";
+import { ZoneType } from "./Zones/Zones";
+import { Showtime } from "./Showtime/Showtime";
+import { Hall } from "./Hall/Hall";
+import { Seats } from "./Seats/Seats";
 
 
 // TEST CUSTOMER
@@ -47,7 +43,6 @@ console.log(feedback);
 // -Cancel booking
 // booking1.cancelBooking();
 
-<<<<<<< HEAD
 
 
 // TEST CUSTOMER TICKET
@@ -59,7 +54,11 @@ console.log(customerTicket1.getTicketDetails());
 const review = new Review(1, 10, 5);
 console.log(review.getReviewDetail());
 
+//TEST MOVIES 
+const movie10 = new Movie(1, "hekl", "hh", 4);
 
+//TEST HALL
+const hall = new Hall(2, "A0")
 
 
 // TEST ZONETYPE
@@ -69,9 +68,9 @@ console.log(zone2.chooseZone());
 
 
 // User stroy 1: As a user, I want to browse and filter movies by genre and showtimes.
-const showtime1 = new Showtime(1, 1, 1, "2025-06-03", "14:00", "16:00");
-const showtime2 = new Showtime(2, 2, 1, "2025-06-03", "16:30", "18:00");
-const showtime3 = new Showtime(3, 3, 2, "2024-20-12", "12:00", "2:00");
+const showtime1 = new Showtime(1, movie10, hall, "444", "erer", "39r3");
+// const showtime2 = new Showtime(2, 2, 1, "2025-06-03", "16:30", "18:00");
+// const showtime3 = new Showtime(3, 3, 2, "2024-20-12", "12:00", "2:00");
 
 const movie1 = new Movie(1, "Action Movie", "Action", 120, [showtime1]);
 const movie2 = new Movie(2, "Comedy Show", "Comedy", 90, [showtime2]);
@@ -106,7 +105,6 @@ console.log(seat1.getSeatDetails());
 console.log(seat2.getSeatDetails());
 console.log(seat3.getSeatDetails());
 console.log(" ");
-=======
 // ------------ QR Code Ticket Test ------------
 const customerTicket = new CustomerTicket(
     1001,
@@ -147,4 +145,3 @@ async function testQRCode() {
 }
 
 testQRCode().catch(console.error);
->>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
