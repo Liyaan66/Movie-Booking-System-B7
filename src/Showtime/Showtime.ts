@@ -58,4 +58,8 @@ export class Showtime {
   getDetails(): string {
     return `${this.date} ${this.startTime} - ${this.endTime}`;
   }
+  getMovieID(): number {
+    return this.movieID;
+  }
+
 }

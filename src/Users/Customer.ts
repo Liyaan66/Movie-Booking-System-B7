@@ -65,5 +65,34 @@ export class Customer extends Users {
     public getName(): string{
         return this.userName;
     }
-
+    
+    viewUpcomingBookings(): Booking[] {
+        const now = new Date(); // Current date: June 6, 2025, 20:53 +07
+        return this.bookings.filter(booking => {
+            const showDate = new Date(booking.showtime.getDetails());
+            return showDate > now;
+        });
+    }
+    viewPastBookings(): Booking[] {
+        const now = new Date();
+        return this.bookings.filter(booking => booking.bookingDate < now);
+    }
+    displayBookings(booking: Booking[], type: string): void {
+        if (booking.length === 0) {
+            console.log(`No ${type} bookings.`);
+            return;
+        }
+        console.log(`\n${type} Bookings for ${this.userName}:`);
+        booking.forEach(booking => {
+            const details = booking.getBookingDetails();
+            console.log(
+                "Booking ID: " + details.bookingID +
+                "\nMovie: " + details.movie +
+                "\nShowtime: " + details.showtime +
+                "\nSeat: " + details.seat +
+                "\nBooking Date: " + details.bookingDate +
+                "\nTotal Price: " + details.totalPrice
+            )
+        });
+    }
 }

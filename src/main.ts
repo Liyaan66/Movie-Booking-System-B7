@@ -2,7 +2,6 @@ import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
 import { Booking } from "./Booking/Booking";
-<<<<<<< HEAD
 import { Screen } from "./Screen/Screen";
 import { Feedback } from "./Feedback/Feedback";
 import { Seats } from "./Seats/Seats"
@@ -10,11 +9,8 @@ import { ZoneType } from "./Zones/Zones";
 import { Showtime } from "./Showtime/Showtime";
 import { CustomerTicket } from "./Booking/CustomerTicket";
 import { Review } from "./Booking/Review";
-=======
 import { QRCodeManager, ReceiveTicket } from "./Booking/ReceiveTicket";
-import { CustomerTicket } from "./Booking/CustomerTicket";
 import { writeFile } from 'fs/promises';
->>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
 
 
 // TEST CUSTOMER
@@ -47,7 +43,6 @@ console.log(feedback);
 // -Cancel booking
 // booking1.cancelBooking();
 
-<<<<<<< HEAD
 
 
 // TEST CUSTOMER TICKET
@@ -73,15 +68,15 @@ const showtime1 = new Showtime(1, 1, 1, "2025-06-03", "14:00", "16:00");
 const showtime2 = new Showtime(2, 2, 1, "2025-06-03", "16:30", "18:00");
 const showtime3 = new Showtime(3, 3, 2, "2024-20-12", "12:00", "2:00");
 
-const movie1 = new Movie(1, "Action Movie", "Action", 120, [showtime1]);
-const movie2 = new Movie(2, "Comedy Show", "Comedy", 90, [showtime2]);
-const movie3 = new Movie(2, "កន្ទួងខៀវ", "Horro", 2, [showtime3])
+// const movie1 = new Movie(1, "Action Movie", "Action", 120, [showtime1]);
+// const movie2 = new Movie(2, "Comedy Show", "Comedy", 90, [showtime2]);
+// const movie3 = new Movie(2, "កន្ទួងខៀវ", "Horro", 2, [showtime3])
 
-console.log(" - Movie 1:", movie1.getDetails());
-console.log(" - Showtimes for Movie 1:", movie1.getShowtimes()[0].getDetails());
+// console.log(" - Movie 1:", movie1.getDetails());
+// console.log(" - Showtimes for Movie 1:", movie1.getShowtimes()[0].getDetails());
 
-console.log(" - Movie 3:", movie3.getDetails());
-console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
+// console.log(" - Movie 3:", movie3.getDetails());
+// console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
 
 
 // User story 2: I want to view seat availability and choose my seats.
@@ -106,7 +101,6 @@ console.log(seat1.getSeatDetails());
 console.log(seat2.getSeatDetails());
 console.log(seat3.getSeatDetails());
 console.log(" ");
-=======
 // ------------ QR Code Ticket Test ------------
 const customerTicket = new CustomerTicket(
     1001,
@@ -119,32 +113,53 @@ const customerTicket = new CustomerTicket(
     12.50
 );
 
-async function testQRCode() {
-    const qrCodeManager = new QRCodeManager();
-    const ticket = await qrCodeManager.generateTicket(customerTicket);
+// async function testQRCode() {
+//     const qrCodeManager = new QRCodeManager();
+//     const ticket = await qrCodeManager.generateTicket(customerTicket);
 
-    console.log("Reference Number:", ticket.getReferenceNumber());
-    console.log("QR Code (base64):", ticket.getQrCode());
+//     console.log("Reference Number:", ticket.getReferenceNumber());
+//     console.log("QR Code (base64):", ticket.getQrCode());
 
-    // Save the QR code
-    const base64Data = ticket.getQrCode().replace(/^data:image\/png;base64,/, "");
-    await writeFile("qrcode.png", base64Data, 'base64');
+//     // Save the QR code
+//     const base64Data = ticket.getQrCode().replace(/^data:image\/png;base64,/, "");
+//     await writeFile("qrcode.png", base64Data, 'base64');
 
-    // Create HTML file
-    const htmlContent = `
-        <!DOCTYPE html>
-        <html>
-        <head><title>QR Code</title></head>
-        <body>
-            <h1>Ticket QR Code</h1>
-            <img src="${ticket.getQrCode()}" />
-            <pre>${ticket.getTicket().getTicketDetails()}</pre>
-        </body>
-        </html>
-    `;
-    await writeFile("qrcode.html", htmlContent);
-    console.log("QR code and HTML file created.");
-}
+//     // Create HTML file
+//     const htmlContent = `
+//         <!DOCTYPE html>
+//         <html>
+//         <head><title>QR Code</title></head>
+//         <body>
+//             <h1>Ticket QR Code</h1>
+//             <img src="${ticket.getQrCode()}" />
+//             <pre>${ticket.getTicket().getTicketDetails()}</pre>
+//         </body>
+//         </html>
+//     `;
+//     await writeFile("qrcode.html", htmlContent);
+//     console.log("QR code and HTML file created.");
+// }
 
-testQRCode().catch(console.error);
->>>>>>> 52bbbece17fe9692fa82eed9ce026c02ae89c189
+// testQRCode().catch(console.error);
+
+
+
+
+
+
+const customer = new Customer("Channak",1, "john@example.com","Female", "password123");
+// Create bookings
+const movie1 = new Movie(1,"Inception","Action", 120);
+const movie2 = new Movie(2,"The Shawshank Redemption","Drama", 142);
+
+const booking1 = new Booking(1, customer, movie1, showtime1, seat1, 1001, new Date(), 10);
+const booking2 = new Booking(2, customer, movie2, showtime2, seat2, 1002, new Date(), 12.5);
+
+customer.addBooking(booking1);
+customer.addBooking(booking2);
+
+// Show bookings
+customer.displayBookings(customer.viewUpcomingBookings(), "Upcoming");
+customer.displayBookings(customer.viewPastBookings(), "Past");
+const viewPastBookings = customer1.viewPastBookings();
+console.log("Past Bookings:", viewPastBookings);

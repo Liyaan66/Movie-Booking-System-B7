@@ -46,4 +46,7 @@ export class Booking {
     cancelBooking(): void {
         console.log(`Booking ${this.bookingID} cancelled. Refund: $${this.totalPrice.toFixed(2)}`);
     }
+    getBookingDate(): Date {
+        return this.bookingDate;
+    }
 };
