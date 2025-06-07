@@ -25,4 +25,6 @@ export class Showtime {
   public getMovieID(): number {
     return this.movie.getMovieID();
   }
+
+  
 }
