@@ -14,55 +14,31 @@ import { Booking } from "./Booking/Booking";
 import { Payment } from "./Payment/Payment"
 
 
-// === Login & Logout ===
+// // === Login & Logout ===
 
-// TEST CUSTOMER
+// // TEST CUSTOMER
 const customer1 = new Customer("Alice", 1, "alice@mail.com", "Female", "pass123");
 customer1.register("Alice", "alice@mail.com", "pass123");
 console.log("Login success:", customer1.login("alice@mail.com", "pass123"));
 console.log("Bookings:", customer1.viewBookings());
 customer1.logout();
 
-// TEST STAFF
+// // TEST STAFF
 const staff1 = new Staff("Bob", 1001, "bob@cinema.com", "Male", "admin321", "Manager");
 staff1.register("Bob", "bob@cinema.com", "admin321");
 console.log("Login success:", staff1.login("bob@cinema.com", "admin321"));
 staff1.logout();
 
-// TEST SCREEN
+// // TEST SCREEN
 const screen1 = new Screen(2, "24 Inch", 3);
 console.log(screen1);
 
-// TEST FEEDBACK
+// // TEST FEEDBACK
 const feedback = new Feedback(customer1, "FB1", "89", 900, "Hello all ");
 console.log(feedback);
 
-// TEST BOOKING
-// const booking1 = new Booking(1, 1, 1, "2025-06-10 18:00", 1, 1, new Date(), 10.00);
-// console.log(booking1.getBookingDetails());
-// -Cancel booking
-// booking1.cancelBooking();
 
-
-
-// TEST CUSTOMER TICKET
-const customerTicket1 = new CustomerTicket(18, 4, 15, "Avengers: Endgame", "AEON 3", 120, new Date(), 10.00);
-console.log(customerTicket1.getTicketDetails());
-
-
-
-
-
-
-
-// TEST ZONETYPE
-const zone2 = new ZoneType(1, "A06", "VIP");
-zone2.setZoneType("STANDARD");
-console.log(zone2.chooseZone());
-
-
-
-// User story 1: Browse movies and showtimes
+// // User story 1: Browse movies and showtimes
 
 const hallA = new Hall(1, "Hall A");
 const hallB = new Hall(2, "Hall B");
@@ -87,13 +63,8 @@ if (showtimes.length > 0) {
 console.log(" - Movie 1:", movie1.getDetails());
 console.log(" - Showtimes for Movie 1:", movie1.getShowtimes()[0].getDetails());
 
-// console.log(" - Movie 3:", movie3.getDetails());
-// console.log(" - Showtimes for Movie 3:", movie3.getShowtimes()[0].getDetails());
 
-
-
-
-// User story 2: View seat availability and choose seats
+// // User story 2: View seat availability and choose seats
 
 const zoneA = new ZoneType(1, "zone A", "VIP");
 const zoneB = new ZoneType(2, "Zone B", "Standard");
@@ -120,20 +91,19 @@ seat2.getSeatDetails();
 seat3.getSeatDetails();
 
 
-// 3.	As a user, I want to pay for my booking and receive a digital ticket.
+
+
+// // User story 3:	As a user, I want to pay for my booking and receive a digital ticket.
 const booking = {
   getBookingID: () => 123,
   getCustomerID: () => 456,
-  getTotalPrice: () => "$15.00",  // returns string with dollar sign
-} as unknown as Booking; // Type cast for test simplicity
+  getTotalPrice: () => "$15.00",  
+} as unknown as Booking; 
 
-// Create Payment instance
 const payment = new Payment(1001, booking);
 
-// Before processing payment
 console.log("Payment status before processing:", payment.getPaymentStatus());
 
-// Process payment
 const success = payment.processPayment();
 
 console.log("Payment processed successfully:", success);
@@ -141,7 +111,23 @@ console.log("Payment status after processing:", payment.getPaymentStatus());
 console.log("Payment details:\n", payment.getPaymentDetails());
 console.log("Total price : ", booking.getTotalPrice());
 
-// 5.	As a cinema staff member, I want to check the QR code for a valid ticket.
+
+// // User story 4: view my upcoming and past bookings
+
+const customer = new Customer("Channak",1, "channak@gmail.com","Female", "nak123");
+const pastDate = new Date("2025-06-06 12:00");
+const booking1 = new Booking(1, customer, movie1, showtime1, seat1, 1001, pastDate, 19);  // past booking
+const booking2 = new Booking(2, customer, movie2, showtime2, seat2, 1002, new Date(), 12.5); // upcoming booking
+customer.addBooking(booking1);
+customer.addBooking(booking2);
+customer.displayBookings(customer.viewUpcomingBookings(), "Upcoming");
+customer.displayBookings(customer.viewPastBookings(), "Past");
+const viewPastBookings = customer1.viewPastBookings();
+console.log("Past Bookings:", viewPastBookings);
+
+
+
+// // User story 5:	As a cinema staff member, I want to check the QR code for a valid ticket.
 const customerTicket = new CustomerTicket(
   101,
   1,
@@ -160,11 +146,9 @@ async function testQRCode() {
   console.log("Reference Number:", ticket.getReferenceNumber());
   console.log("QR Code (base64):", ticket.getQrCode());
 
-  // Save the QR code image file
   const base64Data = ticket.getQrCode().replace(/^data:image\/png;base64,/, "");
   await writeFile("qrcode.png", base64Data, "base64");
-
-  // Save an HTML file to view QR code and ticket details
+  
   const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -185,24 +169,12 @@ async function testQRCode() {
 testQRCode().catch(console.error);
 
 
-// User story 4: view my upcoming and past bookings
-const customer = new Customer("Channak",1, "channak@gmail.com","Female", "nak123");
-const pastDate = new Date("2025-06-06 12:00");
-const booking1 = new Booking(1, customer, movie1, showtime1, seat1, 1001, pastDate, 19);  // past booking
-const booking2 = new Booking(2, customer, movie2, showtime2, seat2, 1002, new Date(), 12.5); // upcoming booking
-customer.addBooking(booking1);
-customer.addBooking(booking2);
-customer.displayBookings(customer.viewUpcomingBookings(), "Upcoming");
-customer.displayBookings(customer.viewPastBookings(), "Past");
-const viewPastBookings = customer1.viewPastBookings();
-console.log("Past Bookings:", viewPastBookings);
 
+// // User story 6: rate and review my movie experience after the show
 
-// User story 6: rate and review my movie experience after the show
-// Example usage
 const movie = new Movie(1, "Inception", "Sci-Fi", 148);
 const showtime = new Showtime(1, movie, hallA, "2025-06-06", "18:00", "20:30");
-// const booking = new Booking(1, customer, movie, showtime, seat1, 101, new Date("2025-06-05"), 15.00);
-customer.addBooking(booking);
+const bookings = new Booking(1, customer, movie, showtime, seat1, 101, new Date("2025-06-05"), 15.00);
+customer.addBooking(bookings);
 customer.addReviewForBooking(1, 4, "Great movie, but the seats were a bit uncomfortable.");
 customer.displayReviews();
