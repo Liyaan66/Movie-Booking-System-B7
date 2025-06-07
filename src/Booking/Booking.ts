@@ -51,6 +51,16 @@ export class Booking {
     getBookingDate(): Date {
         return this.bookingDate;
     }
+
+    public getBookingID(): number {
+        return this.bookingID;
+    }
+    public getCustomerID(): number {
+        return this.customer.getCustomerID();
+    }
+    public getTotalPrice(): number {
+        return this.totalPrice;
+    }
     
     public addReview(rating: number, comment: string): void {
         const now = new Date();
