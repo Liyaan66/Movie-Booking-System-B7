@@ -1,5 +1,6 @@
 import { Users } from "./User";
 import { Booking } from "../Booking/Booking";
+import { Review } from "../Booking/Review";
 
 export class Customer extends Users {
     private bookings: Booking[] = [];
@@ -66,18 +67,22 @@ export class Customer extends Users {
         return this.userName;
     }
     
-    viewUpcomingBookings(): Booking[] {
-        const now = new Date(); // Current date: June 6, 2025, 20:53 +07
+    //View  Upcoming and Past Bookings
+    public viewUpcomingBookings(): Booking[] {
+        const now = new Date();
         return this.bookings.filter(booking => {
             const showDate = new Date(booking.showtime.getDetails());
             return showDate > now;
         });
     }
-    viewPastBookings(): Booking[] {
+    public viewPastBookings(): Booking[] {
         const now = new Date();
-        return this.bookings.filter(booking => booking.bookingDate < now);
+        return this.bookings.filter(booking => {
+        const showDate = new Date(booking.showtime.getDetails().split(" ")[0]);
+        return showDate < now;
+    });
     }
-    displayBookings(booking: Booking[], type: string): void {
+    public displayBookings(booking: Booking[], type: string): void {
         if (booking.length === 0) {
             console.log(`No ${type} bookings.`);
             return;
@@ -93,6 +98,45 @@ export class Customer extends Users {
                 "\nBooking Date: " + details.bookingDate +
                 "\nTotal Price: " + details.totalPrice
             )
+        });
+    }
+
+
+    // Review and Rating
+    public addReviewForBooking(bookingID: number, rating: number, comment: string): void {
+        const booking = this.bookings.find(b => b.bookingID === bookingID);
+        if (!booking) {
+            throw new Error(`Booking with ID ${bookingID} not found.`);
+        }
+        booking.addReview(rating, comment);
+    }
+
+    public viewReviews(): Review[] {
+        const reviews: Review[] = [];
+        this.bookings.forEach(booking => {
+            const review = booking.getReview();
+            if (review) {
+                reviews.push(review);
+            }
+        });
+        return reviews;
+    }
+
+    public displayReviews(): void {
+        const reviews = this.viewReviews();
+        if (reviews.length === 0) {
+            console.log("No reviews submitted.");
+            return;
+        }
+        console.log(`\nReviews by ${this.userName}:`);
+        reviews.forEach(review => {
+            const details = review.getReviewDetails();
+            console.log(
+                `Booking ID: ${details.bookingID}` +
+                `\nRating: ${details.rating} stars` +
+                `\nComment: ${details.comment}` +
+                `\nReview Date: ${details.reviewDate}`
+            );
         });
     }
 }

@@ -1,27 +1,25 @@
-// import { Customer } from "../Users/Customer";
 export class Review {
-    private reviewID: number;
-    private customerID: number;
-    private showtimeID: number;
+    private rating: number; // 1-5 stars
+    private comment: string;
+    private bookingID: number;
+    private reviewDate: Date;
 
-    constructor(reviewID: number, customerID: number, showtimeID: number) {
-        this.reviewID = reviewID;
-        this.customerID = customerID;
-        this.showtimeID = showtimeID;
-    }
-
-    public getReviewDetail(): string {
-        return `Review ID: ${this.reviewID}, Customer ID: ${this.customerID}, Showtime ID: ${this.showtimeID}`;
-    }
-    public getReviewID(): number {
-        return this.reviewID;
-    }
-    public getCustomerID(): number {
-        return this.customerID;
-    }
-    public getShowtimeID(): number {
-        return this.showtimeID;
+    constructor(bookingID: number, rating: number, comment: string) {
+        if (rating < 1 || rating > 5) {
+            throw new Error("Rating must be between 1 and 5 stars.");
+        }
+        this.bookingID = bookingID;
+        this.rating = rating;
+        this.comment = comment;
+        this.reviewDate = new Date();
     }
 
+    public getReviewDetails(): { bookingID: number, rating: number, comment: string, reviewDate: Date } {
+        return {
+            bookingID: this.bookingID,
+            rating: this.rating,
+            comment: this.comment,
+            reviewDate: this.reviewDate
+        };
+    }
 }
-
