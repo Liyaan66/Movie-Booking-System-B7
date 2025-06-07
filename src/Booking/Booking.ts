@@ -46,4 +46,18 @@ export class Booking {
     cancelBooking(): void {
         console.log(`Booking ${this.bookingID} cancelled. Refund: $${this.totalPrice.toFixed(2)}`);
     }
+
+    public getBookingID(): number {
+    return this.bookingID;
+  }
+
+  public getCustomerID(): number {
+    return this.customer.getCustomerID(); // Calls method from Customer
+}
+
+
+  public getTotalPrice(): number {
+    return this.totalPrice;
+}
+
 };
