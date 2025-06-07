@@ -1,5 +1,4 @@
 import { writeFile } from "fs/promises";
-import QRCode from "qrcode";
 import { Movie } from "./Movie/Movie";
 import { Customer } from "./Users/Customer";
 import { Staff } from "./Users/Staff";
@@ -105,7 +104,7 @@ const customerTicket = new CustomerTicket(
   12,
   movie1.getDetails().split("\n")[0], // Just grabbing movie name from getDetails() for example
   hallA.getHallName(),
-  movie1.duration,
+  movie1.getDuration(),
   new Date("2025-06-03T14:00:00"),
   15.0
 );
